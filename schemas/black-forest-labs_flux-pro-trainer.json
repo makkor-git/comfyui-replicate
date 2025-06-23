@@ -1,0 +1,377 @@
+{
+    "url": "https://replicate.com/black-forest-labs/flux-pro-trainer",
+    "owner": "black-forest-labs",
+    "name": "flux-pro-trainer",
+    "description": "Train FLUX.1 [pro] and FLUX 1.1 [pro] Ultra. Upload images to create a custom finetune_id to use with the inference model",
+    "visibility": "public",
+    "github_url": null,
+    "paper_url": "https://blackforestlabs.ai/flux-1-1-ultra/",
+    "license_url": "https://replicate.com/black-forest-labs/flux-pro#license",
+    "run_count": 0,
+    "cover_image_url": "https://tjzk.replicate.delivery/models_models_featured_image/480d9c6c-ef76-4416-8011-a80bca99df6f/trainer-cover.webp",
+    "default_example": {
+        "id": "0dfc7pwdaxrme0cpg86sqf1ky0",
+        "model": "black-forest-labs/flux-pro-trainer",
+        "version": "hidden",
+        "status": "succeeded",
+        "input": {
+            "mode": "general",
+            "priority": "quality",
+            "lora_rank": 32,
+            "captioning": "captioning-disabled",
+            "input_images": "https://replicate.delivery/pbxt/MvDQOp1uNVTNjYxI9wnvyqXNMumlUzQdBFFPvkqNyIkkG1Rn/ABSRTBNGS.zip",
+            "trigger_word": "ABSRTBNGS",
+            "finetune_type": "full",
+            "training_steps": 300
+        },
+        "output": "f07345cb-4d18-4461-aa6f-179566153d28",
+        "logs": "Starting fine-tuning...\n\nInput zip size: 2.0MB\nOptimized zip size: 0.7MB\n{'finetune_id': 'f07345cb-4d18-4461-aa6f-179566153d28', 'polling_url': 'https://api.us1.bfl.ai/v1/get_result?id=f07345cb-4d18-4461-aa6f-179566153d28'}\nFine-tuning...\n\nStill processing...\n\nStill processing...\n\nStill processing...\n\nStill processing...\n\nStill processing...\n\nStill processing...\n\nStill processing...\n\nStill processing...\n\nFine-tuning completed in 679.8sec\n\nFine tuning completed. Use your finetune ID f07345cb-4d18-4461-aa6f-179566153d28 to create images with your training.",
+        "error": null,
+        "metrics": {
+            "predict_time": 680.353265239,
+            "total_time": 680.37157
+        },
+        "created_at": "2025-04-29T14:57:28.407000Z",
+        "started_at": "2025-04-29T14:57:28.425304Z",
+        "completed_at": "2025-04-29T15:08:48.778570Z",
+        "urls": {
+            "get": "https://api.replicate.com/v1/predictions/0dfc7pwdaxrme0cpg86sqf1ky0",
+            "cancel": "https://api.replicate.com/v1/predictions/0dfc7pwdaxrme0cpg86sqf1ky0/cancel"
+        }
+    },
+    "latest_version": {
+        "id": "04e652c9c01dcae177b3e3e716aecf3d4f6a671c9533e3fa4b5ae7617a694fe4",
+        "created_at": "2025-04-29T14:38:46.875425+00:00",
+        "cog_version": "0.14.7",
+        "openapi_schema": {
+            "info": {
+                "title": "Cog",
+                "version": "0.1.0"
+            },
+            "paths": {},
+            "openapi": "3.0.2",
+            "components": {
+                "schemas": {
+                    "mode": {
+                        "enum": [
+                            "general",
+                            "character",
+                            "style",
+                            "product"
+                        ],
+                        "type": "string",
+                        "title": "mode",
+                        "description": "An enumeration."
+                    },
+                    "Input": {
+                        "type": "object",
+                        "title": "Input",
+                        "properties": {
+                            "mode": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/mode"
+                                    }
+                                ],
+                                "default": "general",
+                                "x-order": 3,
+                                "description": "Mode for the fine-tuned model"
+                            },
+                            "priority": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/priority"
+                                    }
+                                ],
+                                "default": "quality",
+                                "x-order": 6,
+                                "description": "Priority of the fine-tuning process"
+                            },
+                            "lora_rank": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/lora_rank"
+                                    }
+                                ],
+                                "default": 32,
+                                "x-order": 8,
+                                "description": "Rank of the fine-tuned model"
+                            },
+                            "captioning": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/captioning"
+                                    }
+                                ],
+                                "default": "automatic",
+                                "x-order": 5,
+                                "description": "Whether to enable captioning during fine-tuning. Automatic turns on captioning if any images are missing caption files."
+                            },
+                            "input_images": {
+                                "type": "string",
+                                "title": "Input Images",
+                                "format": "uri",
+                                "x-order": 0,
+                                "description": "A zip file containing the images that will be used for training. We recommend a minimum of 10 images. If you include captions, include them as one .txt file per image, e.g. my-photo.jpg should have a caption file named my-photo.txt. If you don't include captions, you can turn on captioning."
+                            },
+                            "trigger_word": {
+                                "type": "string",
+                                "title": "Trigger Word",
+                                "default": "TOK",
+                                "x-order": 2,
+                                "description": "The trigger word refers to the object, style or concept you are training on. Pick a string that isn't a real word, like TOK or something related to what's being trained, like CYBRPNK. The trigger word you specify here will be associated with all images during training. Then when you use your LoRA, you can include the trigger word in prompts to help activate the LoRA."
+                            },
+                            "finetune_type": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/finetune_type"
+                                    }
+                                ],
+                                "default": "full",
+                                "x-order": 7,
+                                "description": "Type of fine-tuning"
+                            },
+                            "learning_rate": {
+                                "type": "number",
+                                "title": "Learning Rate",
+                                "maximum": 0.5,
+                                "minimum": 1e-07,
+                                "x-order": 4,
+                                "description": "Learning rate for fine-tuning. If not provided, defaults to 1e-5 for full fine-tuning and 1e-4 for lora fine-tuning"
+                            },
+                            "training_steps": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/training_steps"
+                                    }
+                                ],
+                                "default": 300,
+                                "x-order": 1,
+                                "description": "Number of training steps for the fine-tuning process."
+                            }
+                        }
+                    },
+                    "Output": {
+                        "type": "string",
+                        "title": "Output"
+                    },
+                    "Status": {
+                        "enum": [
+                            "starting",
+                            "processing",
+                            "succeeded",
+                            "canceled",
+                            "failed"
+                        ],
+                        "type": "string",
+                        "title": "Status",
+                        "description": "An enumeration."
+                    },
+                    "priority": {
+                        "enum": [
+                            "speed",
+                            "quality",
+                            "high_res_only"
+                        ],
+                        "type": "string",
+                        "title": "priority",
+                        "description": "An enumeration."
+                    },
+                    "lora_rank": {
+                        "enum": [
+                            16,
+                            32
+                        ],
+                        "type": "integer",
+                        "title": "lora_rank",
+                        "description": "An enumeration."
+                    },
+                    "captioning": {
+                        "enum": [
+                            "automatic",
+                            "captioning-enabled",
+                            "captioning-disabled"
+                        ],
+                        "type": "string",
+                        "title": "captioning",
+                        "description": "An enumeration."
+                    },
+                    "WebhookEvent": {
+                        "enum": [
+                            "start",
+                            "output",
+                            "logs",
+                            "completed"
+                        ],
+                        "type": "string",
+                        "title": "WebhookEvent",
+                        "description": "An enumeration."
+                    },
+                    "finetune_type": {
+                        "enum": [
+                            "lora",
+                            "full"
+                        ],
+                        "type": "string",
+                        "title": "finetune_type",
+                        "description": "An enumeration."
+                    },
+                    "training_steps": {
+                        "enum": [
+                            149,
+                            300,
+                            400,
+                            500,
+                            600,
+                            700,
+                            800,
+                            900,
+                            1000
+                        ],
+                        "type": "integer",
+                        "title": "training_steps",
+                        "description": "An enumeration."
+                    },
+                    "ValidationError": {
+                        "type": "object",
+                        "title": "ValidationError",
+                        "required": [
+                            "loc",
+                            "msg",
+                            "type"
+                        ],
+                        "properties": {
+                            "loc": {
+                                "type": "array",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "string"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        }
+                                    ]
+                                },
+                                "title": "Location"
+                            },
+                            "msg": {
+                                "type": "string",
+                                "title": "Message"
+                            },
+                            "type": {
+                                "type": "string",
+                                "title": "Error Type"
+                            }
+                        }
+                    },
+                    "PredictionRequest": {
+                        "type": "object",
+                        "title": "PredictionRequest",
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "title": "Id"
+                            },
+                            "input": {
+                                "$ref": "#/components/schemas/Input"
+                            },
+                            "webhook": {
+                                "type": "string",
+                                "title": "Webhook",
+                                "format": "uri",
+                                "maxLength": 65536,
+                                "minLength": 1
+                            },
+                            "created_at": {
+                                "type": "string",
+                                "title": "Created At",
+                                "format": "date-time"
+                            },
+                            "output_file_prefix": {
+                                "type": "string",
+                                "title": "Output File Prefix"
+                            },
+                            "webhook_events_filter": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/WebhookEvent"
+                                },
+                                "default": [
+                                    "start",
+                                    "output",
+                                    "logs",
+                                    "completed"
+                                ]
+                            }
+                        }
+                    },
+                    "PredictionResponse": {
+                        "type": "object",
+                        "title": "PredictionResponse",
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "title": "Id"
+                            },
+                            "logs": {
+                                "type": "string",
+                                "title": "Logs",
+                                "default": ""
+                            },
+                            "error": {
+                                "type": "string",
+                                "title": "Error"
+                            },
+                            "input": {
+                                "$ref": "#/components/schemas/Input"
+                            },
+                            "output": {
+                                "$ref": "#/components/schemas/Output"
+                            },
+                            "status": {
+                                "$ref": "#/components/schemas/Status"
+                            },
+                            "metrics": {
+                                "type": "object",
+                                "title": "Metrics"
+                            },
+                            "version": {
+                                "type": "string",
+                                "title": "Version"
+                            },
+                            "created_at": {
+                                "type": "string",
+                                "title": "Created At",
+                                "format": "date-time"
+                            },
+                            "started_at": {
+                                "type": "string",
+                                "title": "Started At",
+                                "format": "date-time"
+                            },
+                            "completed_at": {
+                                "type": "string",
+                                "title": "Completed At",
+                                "format": "date-time"
+                            }
+                        }
+                    },
+                    "HTTPValidationError": {
+                        "type": "object",
+                        "title": "HTTPValidationError",
+                        "properties": {
+                            "detail": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ValidationError"
+                                },
+                                "title": "Detail"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

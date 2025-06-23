@@ -1,0 +1,350 @@
+{
+    "url": "https://replicate.com/black-forest-labs/flux-1.1-pro-ultra-finetuned",
+    "owner": "black-forest-labs",
+    "name": "flux-1.1-pro-ultra-finetuned",
+    "description": "Inference model for FLUX 1.1 [pro] Ultra using custom `finetune_id`. Supports 4MP images and raw mode for realism",
+    "visibility": "public",
+    "github_url": null,
+    "paper_url": "https://blackforestlabs.ai/flux-1-1-ultra/",
+    "license_url": "https://replicate.com/black-forest-labs/flux-pro#license",
+    "run_count": 0,
+    "cover_image_url": "https://tjzk.replicate.delivery/models_models_cover_image/c15b72ab-9626-436d-acdd-b53e4b1c9444/20250429_1820_Flux_Pro_Text_Alte.webp",
+    "default_example": {
+        "id": "3jcypqx8tnrm80cpg8ab35wbhm",
+        "model": "black-forest-labs/flux-1.1-pro-ultra-finetuned",
+        "version": "hidden",
+        "status": "succeeded",
+        "input": {
+            "raw": false,
+            "prompt": "A formula one CYBERCAB car",
+            "finetune_id": "fc14d7bf-95bd-4dde-92c1-2dd7317721f6",
+            "aspect_ratio": "3:2",
+            "output_format": "jpg",
+            "safety_tolerance": 2,
+            "finetune_strength": 1,
+            "image_prompt_strength": 0.1
+        },
+        "output": "https://replicate.delivery/xezq/BPqfMaZuhJUKO6zPMLAMKDjo4TBVuK0Kfr8QLzDLIxp5ypnUA/tmpfuuoj5f9.jpg",
+        "logs": "Running prediction... \n\n================ Training Details ================\nTrigger Word: CYBERCAB\n\nOther Details:\n  Learning Rate: 1e-05\n  Iterations: 100\n  LoRA Rank: 32\n  Mode: general\n  Priority: quality\n  Finetune Type: full\n  Trained: 2025-01-17_13-48-43\n==================================================\nUsing seed: 40495\nGenerating image...\nGenerated image in 14.9sec\nDownloaded image in 0.11sec",
+        "error": null,
+        "metrics": {
+            "image_count": 1,
+            "predict_time": 15.155538535,
+            "total_time": 15.160785
+        },
+        "created_at": "2025-04-29T15:05:14.197000Z",
+        "started_at": "2025-04-29T15:05:14.202247Z",
+        "completed_at": "2025-04-29T15:05:29.357785Z",
+        "urls": {
+            "stream": "https://stream.replicate.com/v1/files/bcwr-zbsb2gbmafykf64sbyfwbq5hxbnnzdi6jw36haipmpnokb4zpkeq",
+            "get": "https://api.replicate.com/v1/predictions/3jcypqx8tnrm80cpg8ab35wbhm",
+            "cancel": "https://api.replicate.com/v1/predictions/3jcypqx8tnrm80cpg8ab35wbhm/cancel"
+        }
+    },
+    "latest_version": {
+        "id": "df93e57884eed71af473d8fc6ebad4c49384aff50592fa2cfa4c9ebf735bcdde",
+        "created_at": "2025-06-03T12:25:47.475786+00:00",
+        "cog_version": "0.15.2",
+        "openapi_schema": {
+            "info": {
+                "title": "Cog",
+                "version": "0.1.0"
+            },
+            "paths": {},
+            "openapi": "3.0.2",
+            "components": {
+                "schemas": {
+                    "Input": {
+                        "type": "object",
+                        "title": "Input",
+                        "required": [
+                            "prompt",
+                            "finetune_id"
+                        ],
+                        "properties": {
+                            "raw": {
+                                "type": "boolean",
+                                "title": "Raw",
+                                "default": false,
+                                "x-order": 8,
+                                "description": "Generate less processed, more natural-looking images"
+                            },
+                            "seed": {
+                                "type": "integer",
+                                "title": "Seed",
+                                "x-order": 7,
+                                "description": "Random seed. Set for reproducible generation"
+                            },
+                            "prompt": {
+                                "type": "string",
+                                "title": "Prompt",
+                                "x-order": 0,
+                                "description": "Text prompt for image generation"
+                            },
+                            "finetune_id": {
+                                "type": "string",
+                                "title": "Finetune Id",
+                                "x-order": 1,
+                                "description": "Finetune ID for making images using a previously trained fine-tune. Only IDs from trainings made using Replicate's Flux Pro fine-tuning model are supported."
+                            },
+                            "aspect_ratio": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/aspect_ratio"
+                                    }
+                                ],
+                                "default": "1:1",
+                                "x-order": 5,
+                                "description": "Aspect ratio for the generated image"
+                            },
+                            "image_prompt": {
+                                "type": "string",
+                                "title": "Image Prompt",
+                                "format": "uri",
+                                "x-order": 3,
+                                "description": "Image to use with Flux Redux. This is used together with the text prompt to guide the generation towards the composition of the image_prompt. Must be jpeg, png, gif, or webp."
+                            },
+                            "output_format": {
+                                "allOf": [
+                                    {
+                                        "$ref": "#/components/schemas/output_format"
+                                    }
+                                ],
+                                "default": "jpg",
+                                "x-order": 9,
+                                "description": "Format of the output images."
+                            },
+                            "safety_tolerance": {
+                                "type": "integer",
+                                "title": "Safety Tolerance",
+                                "default": 2,
+                                "maximum": 6,
+                                "minimum": 1,
+                                "x-order": 6,
+                                "description": "Safety tolerance, 1 is most strict and 6 is most permissive"
+                            },
+                            "finetune_strength": {
+                                "type": "number",
+                                "title": "Finetune Strength",
+                                "default": 1,
+                                "maximum": 2,
+                                "minimum": 0,
+                                "x-order": 2,
+                                "description": "Controls finetune influence"
+                            },
+                            "image_prompt_strength": {
+                                "type": "number",
+                                "title": "Image Prompt Strength",
+                                "default": 0.1,
+                                "maximum": 1,
+                                "minimum": 0,
+                                "x-order": 4,
+                                "description": "Blend between the prompt and the image prompt."
+                            }
+                        }
+                    },
+                    "Output": {
+                        "type": "string",
+                        "title": "Output",
+                        "format": "uri"
+                    },
+                    "Status": {
+                        "enum": [
+                            "starting",
+                            "processing",
+                            "succeeded",
+                            "canceled",
+                            "failed"
+                        ],
+                        "type": "string",
+                        "title": "Status",
+                        "description": "An enumeration."
+                    },
+                    "WebhookEvent": {
+                        "enum": [
+                            "start",
+                            "output",
+                            "logs",
+                            "completed"
+                        ],
+                        "type": "string",
+                        "title": "WebhookEvent",
+                        "description": "An enumeration."
+                    },
+                    "aspect_ratio": {
+                        "enum": [
+                            "21:9",
+                            "16:9",
+                            "3:2",
+                            "4:3",
+                            "5:4",
+                            "1:1",
+                            "4:5",
+                            "3:4",
+                            "2:3",
+                            "9:16",
+                            "9:21"
+                        ],
+                        "type": "string",
+                        "title": "aspect_ratio",
+                        "description": "An enumeration."
+                    },
+                    "output_format": {
+                        "enum": [
+                            "jpg",
+                            "png"
+                        ],
+                        "type": "string",
+                        "title": "output_format",
+                        "description": "An enumeration."
+                    },
+                    "ValidationError": {
+                        "type": "object",
+                        "title": "ValidationError",
+                        "required": [
+                            "loc",
+                            "msg",
+                            "type"
+                        ],
+                        "properties": {
+                            "loc": {
+                                "type": "array",
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "type": "string"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        }
+                                    ]
+                                },
+                                "title": "Location"
+                            },
+                            "msg": {
+                                "type": "string",
+                                "title": "Message"
+                            },
+                            "type": {
+                                "type": "string",
+                                "title": "Error Type"
+                            }
+                        }
+                    },
+                    "PredictionRequest": {
+                        "type": "object",
+                        "title": "PredictionRequest",
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "title": "Id"
+                            },
+                            "input": {
+                                "$ref": "#/components/schemas/Input"
+                            },
+                            "context": {
+                                "type": "object",
+                                "title": "Context",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
+                            },
+                            "webhook": {
+                                "type": "string",
+                                "title": "Webhook",
+                                "format": "uri",
+                                "maxLength": 65536,
+                                "minLength": 1
+                            },
+                            "created_at": {
+                                "type": "string",
+                                "title": "Created At",
+                                "format": "date-time"
+                            },
+                            "output_file_prefix": {
+                                "type": "string",
+                                "title": "Output File Prefix"
+                            },
+                            "webhook_events_filter": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/WebhookEvent"
+                                },
+                                "default": [
+                                    "start",
+                                    "output",
+                                    "logs",
+                                    "completed"
+                                ]
+                            }
+                        }
+                    },
+                    "PredictionResponse": {
+                        "type": "object",
+                        "title": "PredictionResponse",
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "title": "Id"
+                            },
+                            "logs": {
+                                "type": "string",
+                                "title": "Logs",
+                                "default": ""
+                            },
+                            "error": {
+                                "type": "string",
+                                "title": "Error"
+                            },
+                            "input": {
+                                "$ref": "#/components/schemas/Input"
+                            },
+                            "output": {
+                                "$ref": "#/components/schemas/Output"
+                            },
+                            "status": {
+                                "$ref": "#/components/schemas/Status"
+                            },
+                            "metrics": {
+                                "type": "object",
+                                "title": "Metrics"
+                            },
+                            "version": {
+                                "type": "string",
+                                "title": "Version"
+                            },
+                            "created_at": {
+                                "type": "string",
+                                "title": "Created At",
+                                "format": "date-time"
+                            },
+                            "started_at": {
+                                "type": "string",
+                                "title": "Started At",
+                                "format": "date-time"
+                            },
+                            "completed_at": {
+                                "type": "string",
+                                "title": "Completed At",
+                                "format": "date-time"
+                            }
+                        }
+                    },
+                    "HTTPValidationError": {
+                        "type": "object",
+                        "title": "HTTPValidationError",
+                        "properties": {
+                            "detail": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/ValidationError"
+                                },
+                                "title": "Detail"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
